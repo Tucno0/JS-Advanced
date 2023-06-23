@@ -115,7 +115,6 @@ export const promiseComponent = ( element ) => {
         .then( ([ hero1, hero2 ] ) => renderTwoHeros(hero1, hero2)) // Se puede desestructurar el arreglo.
         .catch( renderError ); // Este catch atrapa los errores de las dos promesas.
 
-
   // *===================================================================================================
 
 }

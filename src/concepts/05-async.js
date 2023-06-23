@@ -11,13 +11,12 @@ import { heroes } from "../data/heroes";
  */
 export const asyncComponent = ( element ) => {
   
-  const id1 = '5d86371fd55e2e2a30fe1ccb';
+  const id1 = '5d86371fd55e2e2a30fe1ccbc';
+  console.log('Inicio de componmente');
 
-  const renderHero = ( hero ) => {
-    const { name, about } = hero;
+  const renderHero = ( name ) => {
     element.innerHTML = `
-      <h3 style="color: green;">Nombre: ${ name }</h3>
-      <p>${ about }</p>
+      <h3 style="color: green;">${ name }</h3>
     `;
   }
   
@@ -25,6 +24,7 @@ export const asyncComponent = ( element ) => {
     .then( renderHero )
     .catch( renderHero );
   
+  console.log('Fin de componente');
 }
 
 /**
@@ -35,5 +35,7 @@ export const asyncComponent = ( element ) => {
 const findHero = async ( id ) => { // async: Indica que la función es asíncrona.
   const hero = heroes.find( hero => hero.id === id );
 
-  return hero; // return: Devuelve una promesa.
+  if ( !hero ) throw `Hero with id ${ id } not found`;
+
+  return hero.name; // return: Devuelve una promesa.
 }

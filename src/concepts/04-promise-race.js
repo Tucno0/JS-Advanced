@@ -11,23 +11,23 @@ export const promiseRaceComponent = ( element ) => {
     `;
   }
 
-  Promise.race([ slowPromise, mediumromise, fastPromise ]) // La promesa que se resuelva primero, es la que se ejecuta.
+  Promise.race([ slowPromise(), mediumromise(), fastPromise() ]) // La promesa que se resuelva primero, es la que se ejecuta.
     .then( renderValue )
     .catch( console.warn );
   
 }
 
-const slowPromise = new Promise(( resolve, reject ) => {
+const slowPromise = () => new Promise(( resolve, reject ) => {
   setTimeout(() => {
     resolve('Slow promise');
   }, 2000);
 });
-const mediumromise = new Promise(( resolve, reject ) => {
+const mediumromise = () => new Promise(( resolve, reject ) => {
   setTimeout(() => {
     resolve('Medium promise');
   }, 1500);
 });
-const fastPromise = new Promise(( resolve, reject ) => {
+const fastPromise = () => new Promise(( resolve, reject ) => {
   setTimeout(() => {
     resolve('Fast promise');
   }, 1000);
